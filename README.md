@@ -1,0 +1,1 @@
+# veri_bilimi_donem_sonu_projesi
