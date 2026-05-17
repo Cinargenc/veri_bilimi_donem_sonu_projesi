@@ -19,7 +19,6 @@ Kitsune Network Attack Dataset'indeki **ARP Man-in-the-Middle (MitM)** saldırı
 | 5 | **Random Forest** | Ensemble | Güçlü karşılaştırma modeli |
 | 6 | **Naive Bayes** | Probabilistic | Hızlı baseline |
 | 7 | **ANN (Keras Dense)** | Neural Network | Derin öğrenme modeli |
-| 8 | **CNN (1D)** | Neural Network | Tabular veri üzerinde Conv1D |
 
 ##  Proje Yapısı
 
