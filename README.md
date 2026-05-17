@@ -1,12 +1,11 @@
-#  Kitsune Network Attack Dataset - ARP MitM ML Pipeline
+#  Kitsune Network Attack Dataset - Mirai Botnet Pipeline
 
 ##  Proje Açıklaması
 
-Kitsune Network Attack Dataset'indeki **ARP Man-in-the-Middle (MitM)** saldırısı üzerinde **8 farklı makine öğrenmesi algoritmasını** karşılaştıran kapsamlı bir veri bilimi pipeline'ı.
+Kitsune Network Attack Dataset'indeki **Mirai Botnet* saldırısı üzerinde **7 farklı makine öğrenmesi algoritmasını** karşılaştıran kapsamlı bir veri bilimi pipeline'ı.
 
-**Saldırı Tanımı:** Ettercap aracı kullanılarak ARP poisoning ile LAN trafiğinin dinlenmesi (Confidentiality ihlali).
+**Saldırı Tanımı:** Mirai Botnet saldırısı, güvenlik açığı bulunan IoT cihazlarının ele geçirilerek bir botnet ağına dahil edilmesi ve bu cihazlar üzerinden yoğun ağ trafiği oluşturularak hedef sistemlere DDoS saldırısı gerçekleştirilmesidir.
 
-> **Not:** İleride Fuzzing saldırı veri seti de eklenebilir.
 
 ##  Karşılaştırılan Algoritmalar
 
@@ -25,8 +24,8 @@ Kitsune Network Attack Dataset'indeki **ARP Man-in-the-Middle (MitM)** saldırı
 ```
 veri_bilimi_projesi/
 ├── data/
-│   ├── ARP_MitM_dataset.csv   # 115 feature (N x 115 matris)
-│   └── ARP_MitM_labels.csv    # Etiketler (0=Benign, 1=Attack)
+│   ├── Mirai_dataset.csv   # 115 feature (N x 115 matris)
+│   └── Mirai_labels.csv    # Etiketler (0=Benign, 1=Attack)
 ├── results/
 │   └── metrics.csv             # Model metrikleri
 ├── plots/
@@ -45,8 +44,8 @@ veri_bilimi_projesi/
 pip install -r requirements.txt
 
 # Veri setini data/ dizinine yerleştir:
-#   - ARP_MitM_dataset.csv
-#   - ARP_MitM_labels.csv
+#   - Mirai_datase t.csv
+#   - Mirai_labels.csv
 
 # Pipeline'ı çalıştır
 python pipeline.py
@@ -54,13 +53,13 @@ python pipeline.py
 
 ##  Pipeline Adımları
 
-1. **Veri Yükleme** → `ARP_MitM_dataset.csv` (features) + `ARP_MitM_labels.csv` (labels)
+1. **Veri Yükleme** → `Mirai_dataset.csv` (features) + `Mirai_labels.csv` (labels)
 2. **Veri Keşfi** → Boyut, sınıf dağılımı, veri tipleri
 3. **Eksik Veri Kontrolü** → inf → NaN dönüşümü, median imputation
 4. **Stratified Sampling** → Verinin %30'u (sınıf dengesi korunarak)
 5. **StandardScaler** → Feature ölçekleme
 6. **Train-Test Split** → %80 train / %20 test
-7. **Model Eğitimi** → 8 algoritma
+7. **Model Eğitimi** → 7 algoritma
 8. **Değerlendirme** → Accuracy, Precision, Recall, F1-Score, AUC-ROC
 9. **Görselleştirme** → Confusion matrix, radar chart, bar chart
 10. **Kaydetme** → `results/metrics.csv`
@@ -78,7 +77,6 @@ python pipeline.py
 ##  Veri Seti Hakkında
 
 - **Kaynak**: [Kitsune Network Attack Dataset (UCI)](https://archive.ics.uci.edu/dataset/516/kitsune+network+attack+dataset)
-- **Saldırı**: ARP MitM — Ettercap ile ARP poisoning saldırısı
 - **Features**: 115 istatistiksel ağ trafiği özniteliği (AfterImage, 5 zaman penceresi)
 - **Label**: Binary (0 = Benign, 1 = Attack — MitM üzerinden geçen paketler)
 - **Referans**: Y. Mirsky et al., "Kitsune: An Ensemble of Autoencoders for Online Network Intrusion Detection", NDSS 2018
