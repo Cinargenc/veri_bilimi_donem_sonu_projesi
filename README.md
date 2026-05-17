@@ -2,7 +2,7 @@
 
 ##  Proje Açıklaması
 
-Kitsune Network Attack Dataset'indeki **Mirai Botnet* saldırısı üzerinde **7 farklı makine öğrenmesi algoritmasını** karşılaştıran kapsamlı bir veri bilimi pipeline'ı.
+Kitsune Network Attack Dataset'indeki *Mirai Botnet* saldırısı üzerinde **7 farklı makine öğrenmesi algoritmasını** karşılaştıran kapsamlı bir veri bilimi pipeline'ı.
 
 **Saldırı Tanımı:** Mirai Botnet saldırısı, güvenlik açığı bulunan IoT cihazlarının ele geçirilerek bir botnet ağına dahil edilmesi ve bu cihazlar üzerinden yoğun ağ trafiği oluşturularak hedef sistemlere DDoS saldırısı gerçekleştirilmesidir.
 
