@@ -1,6 +1,6 @@
-# 🛡️ Kitsune Network Attack Dataset - ARP MitM ML Pipeline
+#  Kitsune Network Attack Dataset - ARP MitM ML Pipeline
 
-## 📋 Proje Açıklaması
+##  Proje Açıklaması
 
 Kitsune Network Attack Dataset'indeki **ARP Man-in-the-Middle (MitM)** saldırısı üzerinde **8 farklı makine öğrenmesi algoritmasını** karşılaştıran kapsamlı bir veri bilimi pipeline'ı.
 
@@ -8,7 +8,7 @@ Kitsune Network Attack Dataset'indeki **ARP Man-in-the-Middle (MitM)** saldırı
 
 > **Not:** İleride Fuzzing saldırı veri seti de eklenebilir.
 
-## 🤖 Karşılaştırılan Algoritmalar
+##  Karşılaştırılan Algoritmalar
 
 | # | Algoritma | Tür | Açıklama |
 |---|-----------|-----|----------|
@@ -21,7 +21,7 @@ Kitsune Network Attack Dataset'indeki **ARP Man-in-the-Middle (MitM)** saldırı
 | 7 | **ANN (Keras Dense)** | Neural Network | Derin öğrenme modeli |
 | 8 | **CNN (1D)** | Neural Network | Tabular veri üzerinde Conv1D |
 
-## 📁 Proje Yapısı
+##  Proje Yapısı
 
 ```
 veri_bilimi_projesi/
@@ -39,7 +39,7 @@ veri_bilimi_projesi/
 └── README.md
 ```
 
-## 🚀 Kurulum ve Kullanım
+##  Kurulum ve Kullanım
 
 ```bash
 # Bağımlılıkları yükle
@@ -53,7 +53,7 @@ pip install -r requirements.txt
 python pipeline.py
 ```
 
-## ⚙️ Pipeline Adımları
+##  Pipeline Adımları
 
 1. **Veri Yükleme** → `ARP_MitM_dataset.csv` (features) + `ARP_MitM_labels.csv` (labels)
 2. **Veri Keşfi** → Boyut, sınıf dağılımı, veri tipleri
@@ -66,7 +66,7 @@ python pipeline.py
 9. **Görselleştirme** → Confusion matrix, radar chart, bar chart
 10. **Kaydetme** → `results/metrics.csv`
 
-## 📊 Çıktı Metrikleri
+##  Çıktı Metrikleri
 
 - **Accuracy**: Doğru sınıflandırma oranı
 - **Precision**: Pozitif tahmin kesinliği
@@ -76,7 +76,7 @@ python pipeline.py
 - **Confusion Matrix**: TP, TN, FP, FN detayları
 - **Train/Predict Time**: Eğitim ve tahmin süreleri
 
-## 📝 Veri Seti Hakkında
+##  Veri Seti Hakkında
 
 - **Kaynak**: [Kitsune Network Attack Dataset (UCI)](https://archive.ics.uci.edu/dataset/516/kitsune+network+attack+dataset)
 - **Saldırı**: ARP MitM — Ettercap ile ARP poisoning saldırısı
