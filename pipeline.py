@@ -1,8 +1,7 @@
 """
-╔══════════════════════════════════════════════════════════════════════╗
-║   Kitsune Network Attack Dataset - Mirai Botnet Saldırı Analizi   ║
-║   Karşılaştırmalı ML Model Pipeline'ı                             ║
-╚══════════════════════════════════════════════════════════════════════╝
+
+   Kitsune Network Attack Dataset - Mirai Botnet Saldırı Analizi   
+   Karşılaştırmalı ML Model Pipeline'ı                            
 
 Saldırı: Mirai Botnet (IoT cihazları Telnet üzerinden ele geçirme)
 
@@ -14,7 +13,6 @@ Algoritmalar:
   5. Random Forest
   6. Naive Bayes (Gaussian)
   7. Artificial Neural Network (ANN - MLPClassifier + Keras)
-  8. Convolutional Neural Network (CNN - Keras, tabular reshape)
 
 Veri: data/Mirai_dataset.csv + data/Mirai_labels.csv
 Çıktı: results/metrics.csv, plots/ dizini
@@ -25,7 +23,7 @@ import sys
 import io
 import time
 
-# Türkçe Windows (cp1254) ortamında Unicode karakterler için UTF-8 zorla
+# Türkçe Windows (cp1254) ortamında Unicode karakterler için UTF-8 zorlama
 # line_buffering=True → print() çıktıları anında flush edilir
 if sys.stdout.encoding != 'utf-8':
     sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='replace', line_buffering=True)
@@ -58,9 +56,9 @@ from sklearn.metrics import (
 
 warnings.filterwarnings('ignore')
 
-# ─────────────────────────────────────────────────────────────────────
+# ---------------------------------------------------------------------
 # Logger Yapılandırması
-# ─────────────────────────────────────────────────────────────────────
+# ---------------------------------------------------------------------
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s │ %(levelname)-8s │ %(message)s',
@@ -69,9 +67,9 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 
-# ─────────────────────────────────────────────────────────────────────
+# ---------------------------------------------------------------------
 # Sabitler
-# ─────────────────────────────────────────────────────────────────────
+# ---------------------------------------------------------------------
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DATA_DIR = os.path.join(BASE_DIR, "data")
 DATASET_PATH = os.path.join(DATA_DIR, "Mirai_dataset.csv")      # 115 feature
@@ -87,9 +85,9 @@ TEST_SIZE = 0.20            # Train-test split oranı
 RANDOM_STATE = 42
 
 
-# ─────────────────────────────────────────────────────────────────────
+# ---------------------------------------------------------------------
 # 1. VERİ YÜKLEME VE KEŞİF
-# ─────────────────────────────────────────────────────────────────────
+# ---------------------------------------------------------------------
 def load_data(dataset_path: str, labels_path: str) -> pd.DataFrame:
     """Kitsune dataset ve labels CSV dosyalarını yükler ve birleştirir.
     
@@ -180,9 +178,9 @@ def explore_data(df: pd.DataFrame) -> None:
         print(f"    {dtype}: {count} sütun")
 
 
-# ─────────────────────────────────────────────────────────────────────
+#---------------------------------------------------------------------
 # 2. EKSİK VERİ KONTROLÜ
-# ─────────────────────────────────────────────────────────────────────
+# ---------------------------------------------------------------------
 def handle_missing_values(df: pd.DataFrame) -> pd.DataFrame:
     """Eksik değerleri kontrol eder ve işler."""
     print("\n" + "═" * 70)
@@ -225,9 +223,9 @@ def handle_missing_values(df: pd.DataFrame) -> pd.DataFrame:
     return df
 
 
-# ─────────────────────────────────────────────────────────────────────
+# ---------------------------------------------------------------------
 # 3. STRATİFİED SAMPLING
-# ─────────────────────────────────────────────────────────────────────
+# ---------------------------------------------------------------------
 def stratified_sample(df: pd.DataFrame, ratio: float) -> pd.DataFrame:
     """Sınıf dağılımını koruyarak veriyi örnekler."""
     print("\n" + "═" * 70)
@@ -257,9 +255,9 @@ def stratified_sample(df: pd.DataFrame, ratio: float) -> pd.DataFrame:
     return df_sampled
 
 
-# ─────────────────────────────────────────────────────────────────────
+# ---------------------------------------------------------------------
 # 4. ÖN İŞLEME VE TRAIN-TEST SPLIT
-# ─────────────────────────────────────────────────────────────────────
+# ---------------------------------------------------------------------
 def preprocess_and_split(df: pd.DataFrame):
     """Feature/label ayırma, ölçekleme ve train-test split."""
     print("\n" + "═" * 70)
@@ -298,9 +296,9 @@ def preprocess_and_split(df: pd.DataFrame):
     return X_train_scaled, X_test_scaled, y_train, y_test, scaler
 
 
-# ─────────────────────────────────────────────────────────────────────
+#---------------------------------------------------------------------
 # 5. MODEL TANIMLARI
-# ─────────────────────────────────────────────────────────────────────
+#---------------------------------------------------------------------
 def get_sklearn_models() -> dict:
     """Scikit-learn modellerini döner."""
     models = {
@@ -349,9 +347,9 @@ def get_sklearn_models() -> dict:
     return models
 
 
-# ─────────────────────────────────────────────────────────────────────
+# ---------------------------------------------------------------------
 # 6. KERAS ANN MODELİ
-# ─────────────────────────────────────────────────────────────────────
+# ---------------------------------------------------------------------
 def build_keras_ann(input_dim: int):
     """Keras Dense (ANN) model oluşturur."""
     try:
@@ -389,9 +387,9 @@ def build_keras_ann(input_dim: int):
         return None
 
 
-# ─────────────────────────────────────────────────────────────────────
+# ---------------------------------------------------------------------
 # 7. KERAS CNN MODELİ (Tabular → 1D Reshape)
-# ─────────────────────────────────────────────────────────────────────
+#---------------------------------------------------------------------
 def build_keras_cnn(input_dim: int):
     """Tabular veri için 1D CNN modeli oluşturur."""
     try:
@@ -426,9 +424,9 @@ def build_keras_cnn(input_dim: int):
         return None
 
 
-# ─────────────────────────────────────────────────────────────────────
+# ---------------------------------------------------------------------
 # 8. MODEL EĞİTİMİ VE DEĞERLENDİRME
-# ─────────────────────────────────────────────────────────────────────
+# ---------------------------------------------------------------------
 def evaluate_model(y_true, y_pred, y_prob=None) -> dict:
     """Model performans metriklerini hesaplar."""
     metrics = {
@@ -625,9 +623,9 @@ def train_keras_models(X_train, X_test, y_train, y_test) -> list:
     return results
 
 
-# ─────────────────────────────────────────────────────────────────────
+# ---------------------------------------------------------------------
 # 9. GÖRSELLEŞTİRME
-# ─────────────────────────────────────────────────────────────────────
+# ---------------------------------------------------------------------
 def save_confusion_matrix(cm: np.ndarray, model_name: str) -> None:
     """Confusion matrix'i heatmap olarak kaydeder."""
     fig, ax = plt.subplots(figsize=(8, 6))
@@ -758,9 +756,9 @@ def plot_model_comparison(results_df: pd.DataFrame) -> None:
     logger.info(f"Tüm grafikler kaydedildi → {PLOTS_DIR}")
 
 
-# ─────────────────────────────────────────────────────────────────────
+# ---------------------------------------------------------------------
 # 10. SONUÇLARI KAYDETME
-# ─────────────────────────────────────────────────────────────────────
+# ---------------------------------------------------------------------
 def save_results(results: list) -> pd.DataFrame:
     """Sonuçları CSV dosyasına kaydeder."""
     df = pd.DataFrame(results)
@@ -800,15 +798,15 @@ def print_final_report(results_df: pd.DataFrame) -> None:
 
     # En iyi model
     best = results_df.iloc[0]
-    print(f"\n  🏆 En İyi Model: {best['Model']}")
+    print(f"\n   En İyi Model: {best['Model']}")
     print(f"     F1-Score : {best['F1-Score']:.4f}")
     print(f"     Accuracy : {best['Accuracy']:.4f}")
     print(f"     AUC-ROC  : {best['AUC-ROC']:.4f}" if not np.isnan(best['AUC-ROC']) else "     AUC-ROC  : N/A")
 
 
-# ─────────────────────────────────────────────────────────────────────
+# ---------------------------------------------------------------------
 # ANA PIPELINE
-# ─────────────────────────────────────────────────────────────────────
+# ---------------------------------------------------------------------
 def main():
     """Ana pipeline fonksiyonu."""
     print("\n")
@@ -855,8 +853,8 @@ def main():
     # 10. Final Raporu
     print_final_report(results_df)
 
-    print(f"\n  📁 Metrikler  : {METRICS_PATH}")
-    print(f"  📊 Grafikler  : {PLOTS_DIR}")
+    print(f"\n   Metrikler  : {METRICS_PATH}")
+    print(f"   Grafikler  : {PLOTS_DIR}")
     print(f"\n  ✓ Pipeline tamamlandı!\n")
 
 
