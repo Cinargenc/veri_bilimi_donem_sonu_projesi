@@ -44,7 +44,7 @@ veri_bilimi_projesi/
 pip install -r requirements.txt
 
 # Veri setini data/ dizinine yerleştir:
-#   - Mirai_datase t.csv
+#   - Mirai_dataset.csv
 #   - Mirai_labels.csv
 
 # Pipeline'ı çalıştır
